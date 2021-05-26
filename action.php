@@ -355,6 +355,10 @@ if (isset($_POST["Common"])) {
 			<?php
 			
 			exit();
+		}else{
+			echo '<div class="cart-summary">
+				    <h5 class="text-center">Your cart is empty!</h5>
+				</div>';
 		}
 	}
 	
@@ -370,7 +374,7 @@ if (isset($_POST["Common"])) {
 	               <table id="cart" class="table table-hover table-condensed" id="">
     				<thead>
 						<tr>
-							<th style="width:50%">Product</th>
+							<th style="width:30%">Product</th>
 							<th style="width:10%">Price</th>
 							<th style="width:8%">Quantity</th>
 							<th style="width:7%" class="text-center">Subtotal</th>
@@ -486,7 +490,45 @@ if (isset($_POST["Common"])) {
 							</table></div></div>    
 								';
 				}
-			}
+			}else{
+			echo'
+<div class="main ">
+    <div class="table-responsive">
+        <form method="post" action="login_form.php">
+
+            <table id="cart" class="table table-hover table-condensed" id="">
+                <thead>
+                <tr>
+                    <th style="width:30%">Product</th>
+                    <th style="width:10%">Price</th>
+                    <th style="width:8%">Quantity</th>
+                    <th style="width:7%" class="text-center">Subtotal</th>
+                    <th style="width:10%"></th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot>
+
+                <tr>
+                    <td><a href="store.php" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                    <td class="text-left"><b>Your cart is empty!</b></td>
+                    <div id="issessionset"></div>
+                </tr>
+                </tfoot>
+
+            </table></div></div>
+</form>
+
+</td>
+
+</tr>
+
+</tfoot>
+
+</table></div></div>
+			';
+		}
 	}
 	
 	
