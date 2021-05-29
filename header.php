@@ -123,24 +123,26 @@
             <li>
               <?php
                 include "db.php";
-                if(isset($_SESSION["uid"]))
-                {
-                  $sql = "SELECT first_name FROM user_info WHERE user_id='$_SESSION[uid]'";
-                  $query = mysqli_query($con,$sql);
-                  $row=mysqli_fetch_array($query);
-                  
-                  echo '
+                if(isset($_SESSION["uid"])) {
+                    $sql = "SELECT first_name FROM user_info WHERE user_id='$_SESSION[uid]'";
+                    $query = mysqli_query($con, $sql);
+                    $row = mysqli_fetch_array($query);
+//                    var_dump($sql);
+                    if($row === null) {
+                    $sql = "SELECT admin_name FROM admin_info WHERE admin_id='$_SESSION[uid]'";
+                    $query = mysqli_query($con, $sql);
+                    $row = mysqli_fetch_array($query);
+                        }
+                        echo '
                   <div class="dropdownn">
-                    <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i> HI '.$row["first_name"].'</a>
+                    <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i> HI ' . $row[0] . '</a>
                     <div class="dropdownn-content">
                       <a href="" data-toggle="modal" data-target="#profile"><i class="fa fa-user-circle" aria-hidden="true" ></i>My Profile</a>
                       <a href="logout.php"  ><i class="fa fa-sign-in" aria-hidden="true"></i>Log out</a>
                     </div>
                   </div>';
-                }
-                else
-                { 
-                  echo '
+                     } else {
+                        echo '
                   <div class="dropdownn">
                     <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i> My Account</a>
                     <div class="dropdownn-content">
@@ -148,7 +150,7 @@
                       <a href="" data-toggle="modal" data-target="#Modal_register"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a>
                     </div>
                   </div>';
-                }
+                    }
               ?>
             </li>        
           </ul>
